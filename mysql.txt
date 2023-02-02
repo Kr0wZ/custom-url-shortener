@@ -1,0 +1,15 @@
+#Create the database
+CREATE DATABASE url_shortener;
+
+#Create the user we'll use to access the database
+CREATE USER 'user_shortener'@'localhost' IDENTIFIED BY 'pass_shortener';
+#Give him the correct rights
+GRANT INSERT, SELECT, UPDATE on url_shortener.* TO 'user_shortener'@'localhost';
+#Apply privileges for user
+FLUSH PRIVILEGES;
+
+#Still as root
+USE url_shortener;
+
+#Create the table and insert data inside
+CREATE TABLE links (id INT NOT NULL AUTO_INCREMENT, short_url VARCHAR(255), base_url VARCHAR(255), creation_date DATE, click_count INT DEFAULT 0, PRIMARY KEY (id));
